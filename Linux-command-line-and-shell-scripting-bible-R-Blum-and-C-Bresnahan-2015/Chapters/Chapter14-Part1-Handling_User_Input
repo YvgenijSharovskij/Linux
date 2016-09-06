@@ -42,7 +42,8 @@
 #
 #	in addition:
 #	The $* variable takes all the parameters supplied on the command line as a single word.
-#	The $@ variable, on the other hand, takes all the parameters supplied on the command line as #		separate words in the same string.
+#	The $@ variable, on the other hand, takes all the parameters supplied on the command line as 
+#	separate words in the same string.
 #
 #
 	echo "param \$* is: $*"
