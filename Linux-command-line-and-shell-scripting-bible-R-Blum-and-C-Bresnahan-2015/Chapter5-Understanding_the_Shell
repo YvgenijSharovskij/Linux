@@ -1,0 +1,77 @@
+#!/bin/bash
+
+###########################################################################################################
+# CHAPTER 5: 
+# Understanding the Shell
+#
+#
+# INDEX:
+# intro
+# background mode
+# co-processing
+# external / internal commands
+# history and alias
+# 
+#
+###################################### intro
+#
+#	can run several commands in a commands list on a single line with ; as separator
+#
+#	can make a process list by enclosing in (...), e.g. (cd ; ls),
+#	this creates a sub-shell, as seen by the variable echo $BASH_SUBSHELL set to 1
+#
+#	... Subshells are often used for multi-processing in shell scripts;
+#	one effective use of sub-shells is running processes in the background mode
+#
+####################################### background mode
+#
+#	processes running in the background are listed with jobs:
+#	jobs
+#
+#	place & at the end to put a process list into background mode:
+#	(tar -cf big.tar /home/admin ; tar -cf usr_big.tar /home/guest)&
+#
+#
+####################################### co-processing
+#
+#	can use coproc for co-processing in a sub-shell:
+#	note: spaces are necessary!
+#	corpoc job_name { sleep 10; }
+#
+#
+####################################### external / internal commands
+#
+#	type [command] shows if the command is external / internal;
+#	some are both external and internal, as seen with type -a [command]
+#
+#	external (outside of the bash shell) commands are executed in a sub-shell
+#
+#
+####################################### history and alias
+#
+#	to recall and reuse the last command in history, type !! and press the Enter key
+#	to recall and reuse the nth command in history, type !n and press the Enter key
+#	can also use UP arrow
+#
+#	aliases are abbreviations for commands, native alias list is seen with:
+#	alias -p
+#	
+#	new alias can be created as:
+#	alias name='echo this is a test alias'
+#
+#	note: because command aliases are built-in commands, an alias is valid only for the shell 
+#	process in which it is defined
+#
+#	to save custom aliases for use after the shell is terminated, save the aliases in either
+#	the ~/.bashrc file or a separate ~/.bash_aliases file;
+#	the $HOME/.bashrc is run by the login shell;
+#	if saving in a separate ~/.bash_aliases file, check ~/.bashrc so that it reads this file as:
+#	if [ -f ~/.bash_aliases ]; then
+#    		. ~/.bash_aliases
+#	fi
+#	
+#	note: c.f. on making persistent variables
+#	
+#
+#
+###########################################################################################################

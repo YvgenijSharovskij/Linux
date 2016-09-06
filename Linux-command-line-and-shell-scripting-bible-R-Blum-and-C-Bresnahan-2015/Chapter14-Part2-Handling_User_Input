@@ -1,0 +1,109 @@
+#!/bin/bash
+
+
+###########################################################################################################
+# CHAPTER 14: 
+# Handling User Input
+# Part 2
+#
+#
+# INDEX: 
+# Part 1: positional params
+# Part 2: options as params
+# Part 2: options break from params
+# Part 3: format params with getopt to combine params -ab -c test1
+# Part 4: read
+# Part 4: read, a file by line
+#	
+#
+######################################## options as params
+#
+#	options -a -b -c ... can be processed as params 1 2 3 ... with $1, $2, $3... and shift
+#	in a case:
+#
+#	while [ -n "$1" ]
+#	do
+#		case "$1" in
+#		-a) echo "-a option";;
+#		-b) echo "-b option";;
+#		-c) echo "-c option";;
+#		*) echo "nothing else but a b c..."
+#		esac
+#		shift
+#	done
+#		
+#
+######################################## options break from params
+#
+#	to separate options from params use break when encountering --
+#
+	while [ -n "$1" ]
+	do
+		case "$1" in
+		-a) echo "-a option";;
+		-b) echo "-b option";;
+		-c) echo "-c option";;
+		--) shift
+			break ;;
+			
+		*) echo "$1 no accepted..."
+		esac
+		shift	#2nd shift, if 1st shift is premature
+	done
+
+	count=1
+	
+	for param in "$@"
+	do
+		echo "option $count is: $param"
+		count=$[ $count + 1 ]
+	done
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#	
+###########################################################################################################

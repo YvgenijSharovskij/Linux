@@ -1,0 +1,113 @@
+#!/bin/bash
+
+
+###########################################################################################################
+# CHAPTER 11: 
+# Basic Script Building
+#
+#
+# INDEX:
+# (running a shell script, remember to set file permission to execute and set $PATH)
+# command substitution in a subshell
+# output and input redirection
+# math expressions
+# bc (bash calculator) basics
+# $?
+#
+#
+###################################### (running a shell script, remember to set file permission to execute
+###################################### and set $PATH)
+#
+#	(c.f. Chap7)
+#
+#
+#
+###################################### command substitution in a subshell
+#
+#	i.e., to save command output into a variable,
+#	2 methods:
+#	1) enclose command with a backtick (')
+#	2) as $(command run in sub-shell)
+#
+#	e.g., save ls output into a file with today's date:
+#	today=$(date +%y%m%d)
+#	ls /usr/bin -al > testlog.$today
+#
+#
+###################################### output and input redirection
+#
+#	save command output into a file with > as:
+#	command > filename
+#	
+#	data can be appended to an existing file with >>, instead of > (no overwrite):
+#	command >> filename
+#
+#	reverse for input, i.e. < and << to retrieve file info, e.g.:
+#	wc < filename
+#	(outline: nr of: lines , words , bytes)
+#
+#	for example (rather unusual...):
+#	ls /usr/bin -al > testlog
+#	testlog < sort 
+#
+#	more practically, can redirect command output to command output, aka piping with | as:
+#	ls -Fl | sort -r | less
+#
+#	or:
+#	ls -l | sort > filename
+#
+#
+###################################### math expressions
+#
+#	can do as $[...]:
+#	var4=$[$var1 * ($var2 - $var3)]
+#
+#	warning: only get int values, no floats;
+#	can get float with:
+#	1) zsh
+#	2) bc (the bash calculator, a programming language)
+#
+###################################### bc (bash calculator) basics
+#
+#	start without welcome screen:
+#	bc -q
+#
+#	print a var:
+#	print $var
+#
+#	assign s.f.'s:
+#	scale=4
+#
+#	exit:
+#	quit
+#
+#
+#	to use bc in sh scripts,
+#	with short calculations (not very good) need command substitution by $(...) and | bc, e.g.:
+#	var3=$(echo "scale=4; $var1 * $var1" | bc)
+#	
+#	more practical with inline input:
+#	note: The EOF text string indicates the beginning and end of the inline redirection data
+#
+# 	var1=10
+# 	var2=3.2
+# 	var3=1.5
+# 	ans=$(bc << EOF
+#		scale=4
+# 		exp1=($var1 * $var2)
+# 		exp2=($var1 + $var2)
+#		exp1 + exp2
+# 		EOF
+# 	)
+# 
+# 	echo "the answer is $ans"
+#
+#
+###################################### $?
+#
+#	$? is the exit status var, 
+#	last command exited: 0 
+#	
+#	(...)
+#	
+###########################################################################################################

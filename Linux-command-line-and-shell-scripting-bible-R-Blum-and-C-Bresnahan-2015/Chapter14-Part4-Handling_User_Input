@@ -1,0 +1,105 @@
+#!/bin/bash
+
+
+###########################################################################################################
+# CHAPTER 14: Handling User Input
+# Part 4
+#
+#
+# INDEX: 
+# Part 1: positional params
+# Part 2: options as params
+# Part 2: options break from params
+# Part 3: format params with getopt to combine params -ab -c test1
+# Part 4: read
+# Part 4: read, a file by line
+#	
+#
+######################################## read
+#
+#	read accepts keyboard / ... input and stores in $REPLY
+#	read -p, -p serves as a "prompt" in 1 line:
+#		 -t time-out in case of no entry in seconds
+#
+	if read -t 5 -p "Please enter your name: " name
+	then
+		echo "Hello $name, welcome to my script"
+	else
+		echo
+		echo "Sorry, too slow!"
+	fi
+#
+#	read -nnr, where nr of chars allowed to enter:
+	read -n1 -p "Do you want to continue [Y/N]? " answer
+
+	case $answer in
+		Y | y) echo
+			echo "fine, continue on...";;
+		N | n) echo
+		echo "OK, goodbye!"
+		exit;;
+	esac
+echo "This is the end of the read script"
+
+#
+#
+#
+#
+######################################## read, a file by line
+#
+#	pipe to cat
+#
+	count=1
+	cat Chap14Part4 | while read line
+	do
+		echo "Line $count: $line"
+		count=$[ $count + 1]
+	done
+
+
+
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#	
+###########################################################################################################

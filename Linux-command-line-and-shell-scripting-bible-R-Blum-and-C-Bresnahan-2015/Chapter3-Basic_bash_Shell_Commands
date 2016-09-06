@@ -1,0 +1,196 @@
+#!/bin/bash
+
+###########################################################################################################
+# CHAPTER 3:
+# Basic bash Shell Commands
+#
+#
+# INDEX:
+# basic file management, file globbing 
+# creating files with touch
+# copy files / dirs with cp 
+# copy files / dirs with cp 
+# linking files with ln
+# renaming files (aka moving files) with mv 
+# removing files with rm 
+# make a dir with mkdir
+# removing dirs with rmdir and rm 
+# viewing files with file, cat, more, less, tail, head
+#
+#
+# NOTES:
+# # man [command], man -k [keyword], man [section] intro : used to reach the manual
+#
+#
+####################################  basic file management, file globbing 
+#
+#   cd [destination: absolute or relative]:
+#      just cd without a param will change it to default, which is /home/[user]/
+#      e.g. absolute: cd /home/[user]/Desktop
+#      cd [relative destination] can be presented in 2 ways:
+#	1) The single dot ( . ) to represent the current directory
+#		the . can be ommited with cd, e.g. cd Documents
+#	2) The double dot ( .. ) to represent the parent directory
+#	note: unlike in Windows, Linux got a single virtual root dir, 
+#	      and cd can be used on different partitions
+#	
+#
+# 
+#   pwd : "present working directory", shows the present working 
+#	   directory with an absolute path
+#
+#
+#
+#   ls : list
+#	The ls command at its most basic form displays the files and 		
+# 	directories located in your current directory
+#
+#	ls -F : marks folders with / and executable files with *
+#
+#	ls -a : To display hidden files along with normal files and 
+#		directories, use the -a parameter;
+#		hidden files are shown with a . in front
+#
+#	ls -R -F : shows files that are contained within subdirectories
+#		   in the current directory
+#
+#	ls -l : The -l parameter produces a long listing format, providing more
+#		information about each file in the directory;
+#		note: this includes the execute, read, write permissions (c.f. Ch6)
+#
+#	ls -l Ch* : get info on file(s) beginning with Ch*
+#		    ? replaces one char, 
+#		    * replaces zero or more chars
+#                   [a, b] gives options at the char location, e.g. [c, C]hap*
+#		    ! says "must be included", e.g. ...
+#
+#
+#
+####################################  creating files with touch 
+#
+#	touch [filename] : The touch command creates the new file you specify 
+#			   and assigns your username as the file owner.	
+#
+#			   The touch command can also be used to change the 
+#			   modification time. This is done without changing
+#			   the file contents.
+#
+####################################  copy files / dirs with cp 
+#
+#	cp [source] [name/dir] : The new file acts like a brand
+#				 new file, with an updated modification time
+#		e.g.: cp -i test1.sh test2.sh
+#		      ls -l test*
+#		      (cp -i param asks to overwrite file if it's existing)
+#
+#		cp -R folder1/ folder2/ : recursively copy the files in folder1 #					  in the current dir to folder2 in the #					  current dir, -- folder2 is created #					  with the newly copied files
+#
+#
+#################################### linking files with ln 
+#	
+#	can have several links to one original file	
+#	(If you use the cp command to copy a file that's linked to another
+#	source file, all you're doing is making another copy of the source
+#	file.)			
+#	can be of 2 types:
+#	1) symbolic : a physical file that points to another file
+#		      (Windows "short-cut")
+#	2) hard : a separate virtual file that contains
+#		  information about the original file and where to locate it;
+#		  however, they are physically the same file.
+#
+#	1) symbolic links: 
+#		ln -s [original_file] [link_file]
+#			[link_file] is created with 8 bytes as a pointer to the
+#			[original_file],  [link_file] is marked with -> under 
+#			ls -l, and has a different inode identifier as can be seen with 
+#			ls -i
+#			note: inode ID is a unique identification number that the kernel assigns #			      to each object in the filesystem
+#
+#	2) A hard link :
+#		ln  [original_file] [link_file]	
+#			same inode identifier with ls -i
+#			same size
+#
+#
+#
+#################################### renaming files (aka moving files) with mv 
+#
+#	keeps the same inode number and timestamp value
+#
+#	simple renaming: 
+#	mv [file1] [file2]
+#
+#	rename and move: 
+#	mv ../../file1 ../file2
+#
+#
+#################################### removing files with rm 
+#
+#	note: The shell has no recycle bin or trashcan.
+#
+#	rm -i [file1]
+#
+#
+#################################### make a dir with mkdir 
+#
+#	simple:
+#	mkdir new_dir
+#
+#	make a new dir with a sub-dir: need to use -p 
+#	mkdir -p new_dir1/new_dir2/new_dir3
+#	ls -R new_dir1
+#
+#
+#################################### removing dirs with rmdir and rm 
+#
+#	note: the rmdir command works only for removing empty directories,
+#	      so there's no -i param 
+#
+#	simple e.g.:
+#	rmdir newdir1
+#
+#	can remove a non-empty dir recursively with rm -r,
+#	but, notice that you still must verify each file that gets removed :
+#	(note that -r and -R work the same way)
+#	rm -ir newdir
+#
+#	can force removal without verification with -f :
+#	rm -rf newdir1
+#	 
+#	
+#################################### viewing files with file, cat, more, less, tail, head
+#
+#	note: cat and more load the entire file first, less loads part of a file 
+#	      and allows scrolling; 
+#	      viewing the head/tail of a file is neat with log files
+#
+#	to view file type, simply:
+#	file filename
+#
+#	to view the whole contents of a text file with cat,
+#	param -n to number lines:
+#	cat -n filename
+#
+#	to view a text file page by page with more:
+#	more textfile
+#
+#	to view a text file with scrolling UP and DOWN arrows with less:
+#	less textfile
+#
+#	to view the end/tail of a file, use tail with -n [nr of lines] :
+#	tail -n 10 textfile
+#
+#	to view the start/head of a file, use head with -n [nr of lines] :
+#	head -n 10 textfile
+#	
+#
+#
+#
+#
+#
+###########################################################################################################
+
+
+
+

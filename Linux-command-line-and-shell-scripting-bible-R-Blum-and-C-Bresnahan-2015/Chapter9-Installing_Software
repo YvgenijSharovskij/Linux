@@ -1,0 +1,93 @@
+#!/bin/bash
+
+###########################################################################################################
+# CHAPTER 9: 
+# Installing Software
+#
+#
+# INDEX: 
+# aptitude 
+# extra: save prompt output into a file and view it with less
+#
+#
+###################################### aptitude 
+#
+#	(The default software repository locations for aptitude are set up for you when you install your #	Linux distribution. The repository locations are stored in the file /etc/apt/sources.list .)
+#
+#
+###################################### extra: save prompt output into a file and view it with less
+#
+#	[command] > filename
+#	less filename
+#
+#	tarball: 
+#	./configure && make && make install
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+###########################################################################################################
