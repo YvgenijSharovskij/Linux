@@ -1,0 +1,107 @@
+#!/bin/bash
+
+
+###########################################################################################################
+# CHAPTER 14: Handling User Input
+# Part 3
+#
+#
+# INDEX: 
+# Part 1: positional params
+# Part 2: options as params
+# Part 2: options break from params
+# Part 3: format params with getopt to combine params -ab -c test1
+# Part 4: read
+# Part 4: read, a file by line
+#	
+#
+######################################## format params with getopt to combine params -ab -c test1
+#
+#	getopt syntax:
+#	getopt optstring parameters
+#
+#	where,
+#	optstring defines the valid option letters that can be used as:
+#	ab:cd
+#
+#	viz, option: -a, -b param (as :) -c -d 
+#	include -q to ignore error on additional options, and not as -- param separated
+#	e.g.:
+#	getopt -q ab:cd -a -b test1 -cde test2 test3
+#	-a -b 'test1' -c -d -- 'test2' 'test3'
+#
+#	trick:
+#	use set to replace params and get them formatted with getopt
+#
+	set -- $(getopt -q ab:cd "$@")
+
+	while [ -n "$1" ]
+	do
+		case "$1" in
+		-a) echo "-a option";;
+		-b) param="$2"
+			echo "Found the -b option, with parameter value $param"
+			shift ;;
+		-c) echo "-c option";;
+		-d) echo "-c option";;
+		--) shift
+			break ;;
+			
+		*) echo "$1 no accepted..."
+		esac
+		shift	#2nd shift, if 1st shift is premature
+	done
+
+	count=1
+	
+	for param in "$@"
+	do
+		echo "option $count is: $param"
+		count=$[ $count + 1 ]
+	done
+#
+#	note:
+#	The getopt command isn't good at dealing with parameter values with spaces and quotation marks;
+#	the getopts commands offers a solution
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#	
+###########################################################################################################

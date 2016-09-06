@@ -1,0 +1,130 @@
+#!/bin/bash
+
+###########################################################################################################
+# CHAPTER 7: 
+# Understanding Linux File Permissions
+#
+#
+# INDEX:
+# file permissions (...)
+# changing file permissions with chmod
+# creating a shared group directory with SGID
+#
+#
+###################################### file permissions (...)
+#
+#	(...)
+#
+#	format, e.g.:
+#	-rwxrwxrwx
+#
+#	- for files
+#	d for directories
+#	l for links
+#	c for character dev ices
+#	b for block dev ices
+#	n for network dev ices
+#
+#	read (r), write (w) and execute (x) permissions are set in specific order, as:
+#	1) owner
+#	2) group
+#	3) everyone else
+#
+#	default permissions are set as 2 with umask in the /etc/login.defs file, which uses octal format:
+#	Permissions 	Binary 	Octal 	Description
+#	--- 		000 	0 	None
+#	--x 		001 	1 	Execute-only
+#	-w- 		010 	2 	Write-only
+#	-wx 		011 	3 	Write and execute
+#	r-- 		100 	4 	Read-only
+#	r-x 		101 	5 	Read and execute
+#	rw- 		110 	6 	Read and write
+#	rwx 		111 	7 	Read, write, and execute
+#
+#
+#
+#
+#
+###################################### changing file permissions with chmod
+#
+#	since default file permissions is set with umask as 2 (-w-),
+#	file permissions often needs to be changed in order to e.g.
+#	execute bash files (...); do this with chmod:
+#
+#	syntax:
+#	chmod options mode file
+#
+#	format:
+#	[ugoa...][+-=][rwxXstugo...]
+#
+#	where, 
+#
+#	[ugoa...]:
+#	u 	for the user
+#	g 	for the group
+#	o 	for others (every one else)
+#	a 	for all of the above
+#
+#	[+-=]:
+#	+ 	to add to existing permissions
+#	- 	substract from existing permissions
+#	= 	set to 
+#
+#	[rwxXstugo...]:
+#	X 	assigns execute permissions only if the object is a directory or 
+#	  	if it already had execute permissions
+#	s 	sets the UID or GID (user or group ID)
+#	t 	saves program text
+#	u 	sets the permissions to u (user)
+#	g 	sets the permissions to g (group)
+#	o 	sets the permissions to o (others)
+#
+#	
+#	for example, to add executible permissions to the user for file_name:
+#	chmod u+x file_name
+#
+#
+#
+###################################### creating a shared group directory with SGID
+#
+#	for example, set the set group id (SGID) to make a directory as shared by the group shared,
+#	and make any new created file in this directory as shared by the group as well:
+#	mkdir shared_dir
+#	chgrp shared shared_dir
+#	chmod g+s shared_dir
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+###########################################################################################################

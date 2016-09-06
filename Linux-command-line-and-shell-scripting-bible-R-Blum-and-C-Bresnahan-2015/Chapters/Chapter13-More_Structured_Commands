@@ -1,0 +1,168 @@
+#!/bin/bash
+
+
+###########################################################################################################
+# CHAPTER 13: 
+# More Structured Commands
+#
+#
+# INDEX:
+# if-then(-else/elif) ; 
+# if [ test ] && / || [ test2 ] ;
+# if (( complex math expr )) ;
+# if [[ complex string expr ]] ;
+# case
+#
+#
+# # note: many omissions, as it's very simple!
+#
+#
+####################################### if-then(-else/elif) ; 
+####################################### if [ test ] && / || [ test2 ] ;
+#######################################	if (( complex math expr )) ;
+#######################################	if [[ complex string expr ]] ;
+#
+#	if-then syntax:
+#	if the {if command} got a $? = 0, then the {then command} is run
+#
+#
+#	if command
+#	then
+#		commands
+#	else
+#		commands
+#	fi
+#
+#	e.g.: search /etc/passwd for thisUser:
+	this_user=main
+	
+	if grep $this_user /etc/passwd
+	then
+		echo "$this_user is in /etc/passwd, as \$? is 0"
+	else
+		echo "$this_user is not in /etc/passwd, as \$? not 0"
+	fi
+#
+#
+#	in order to evaluate TRUE/FALSE expressions in the if statement other than $? = 0,
+#	use the test command as:
+#
+#	if test command
+#	else
+#		command
+#	fi
+#
+#	an abbreviated for is used in practice:
+	var1=1
+	var2=1
+
+	if [ $var1 -eq $var2 ]
+	then
+		echo "\$var1 -eq \$var2"
+	fi
+
+#	note: spaces are mandatory, if [ ... ]
+#
+#	if [ test ] can evaluate:
+#	1) numerical, float-values cannot be used (as before with bc)
+#	2) string
+#	3) file
+#	comparisons, such as:
+	string1="string"
+
+	if [ $USER = $string1 ]
+	then
+		echo "\$USER = \$string"
+	else
+		echo "\$USER != \$string"
+	fi
+#
+#	and for dirs:
+	test_dir=/home/main
+
+	if [ -d $test_dir ]
+	then
+		echo "-d \$test_dir : is a dir and exists"
+	fi
+#
+#	and for files:
+	test_file=/home/main/Desktop/Chap12
+
+	if [ -x $test_file ] && [ -e $test_file ]
+	then
+		echo "-x \$test_file : is a file and executable; and -w : can be written to"
+	fi
+#
+#
+#	extra:
+#	(more) complex math and string expressions, like var++ and exp**, and
+#	pattern matching of strings are used as:
+#
+#	if (( complex math expr )) ;
+#	if [[ complex string expr ]] ;
+#
+#	for example, to see if $USER begins with the letter m :
+	if [[ $USER == m* ]]
+	then
+		echo "\$USER == m*"
+	fi
+#
+#
+#
+######################################## case
+#
+#	again, very simple, like a switch-statement (...):
+# 
+#	case statement syntax:
+#	case variable in
+#	pattern1 | pattern2) 
+#		commands1;;
+#	pattern3) 
+#		commands2;;
+#	*) 
+#		default commands;;
+#	esac
+#
+#	for example:
+	echo "eg of a case-statement:"
+	
+	case $USER in
+	"main" | "home")
+		echo "'main' | 'home')";;
+	"asdf" | "etst")
+		echo "'asdf' | 'asasdd'";;
+	*)
+		echo "whatever"
+	esac
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#	
+###########################################################################################################

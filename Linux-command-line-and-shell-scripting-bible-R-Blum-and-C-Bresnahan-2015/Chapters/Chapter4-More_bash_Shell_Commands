@@ -1,0 +1,179 @@
+#!/bin/bash
+
+###########################################################################################################
+# CHAPTER 4: 
+# More bash Shell Commands
+#
+#
+# INDEX:
+# info about processes with ps
+# Real-time process monitoring with top 
+# Stopping processes with kill and killall
+# mount / umount (no "n"), available dev space with df, dir space with du 
+# sorting with sort
+# search with grep
+#
+#
+###################################### info about processes with ps 
+#
+# 	The GNU ps command that's used in Linux systems supports three different types of command
+# 	line params, which can be combined together:
+# 	1) Unix-style params, which are preceded by a dash
+# 	2) BSD-style params, which are not preceded by a dash
+# 	3) GNU long params, which are preceded by a double dash
+#	note: can get different output formats for each 1-3), only 1) is used below;
+#	      with 2) can get neat STAT output showing processes state with ps l
+#
+#	e.g.:
+#	ps -le --forest
+#
+#	basic ps command provides the follwing basic format output: 
+#	process ID (PID), terminal TTY (Teletypewriter) from which the process is running, and 
+#	the CPU time used by the process
+#
+#
+#	e.g.: short full format param (-f) for all processes (-e):
+#	ps -ef
+#	
+#	ps -ef shows:
+#	UID: ID of the user who runs the process
+#	PID: process ID
+#	PPID: PID of the parent process
+#	C: computing utilisation
+#	STIME: system time when the process started
+#	TTY: terminal TTY (Teletypewriter) from which the process is running
+#	TIME: cumulative CPU time
+#	CMD: command name of the program
+#
+#	e.g.: long full format param (-l) for all processes (-e):
+#	ps -el
+#
+#	ps -ef shows additional info with long format:
+#	F: system flag
+#	S: process state as: O = running on processor; S = sleeping; R = runnable, waiting; Z = zombie, #	   terminated but parent not available; T = terminated
+#	PRI: priority (higher numbers => lower priority)
+#	NI: nice index, used for determining priorities
+#	ADDR: memory address
+#	SZ: Approximate amount of swap space required if the process was swapped out
+#	WCHAN : Address of the kernel function where the process is sleeping
+#
+#
+#
+####################################### Real-time process monitoring with top 
+#
+#	unlike ps, top shows real-life values, 
+#	press d to select sort order (default sort order is CPU percentage):
+#	top
+#
+#	note: load averages are output as 1 min, 5 min, 15 min;
+#	      over-load values are different for different systems (...),
+#	      but a load average above 2 for longer times is indicative of a high load
+#
+#
+####################################### Stopping processes with kill and killall
+#
+#	Linux follows Unix methods for inter-process communication. In Linux, processes communicate with #	each other using signals. A process signal is a predefined message that processes recognise 
+#	and may choose to ignore or act upon. Some signals are:
+#	(c.f. WINAPI call switches!)
+#
+#	Signal  Name 	Description
+#	1 	HUP	Hangs up	
+#	2 	INT	Interrupts
+#	3 	QUIT	Stops running
+#	9 	KILL	Unconditionally terminates
+#	11 	SEGV 	Produces segment violation
+#	15 	TERM 	Terminates if possible
+#	17 	STOP 	Stops unconditionally, but doesn't terminate
+#	18 	TSTP 	Stops or pauses, but continues to run in background
+#	19 	CONT 	Resumes execution after STOP or TSTP
+#
+#
+#	kill sends (as a default) the TERM signal to the PID, 
+#	command name cannot be used, only PID can be used:
+#	sudo kill 4292
+#	
+#	non-default signals can be invoked with kill -s:
+#	kill -s HUP 4292
+#
+#	killall can be used with names rather that PID,
+#	can also use wildcards like *:
+#	killall http*
+#
+#	note: kill and killall does not provide any output, to see if the invocation was effective,
+#	      use ps or top
+#
+#
+######################################## mount / umount (no "n"), available dev space with df,
+######################################## dir space with du 				 
+#
+#	basic mounting and unmounting:
+#	mount -t [type] [device] [directory]
+#	umount [directory | device ]
+#
+#	where,
+#	[type] 	    : filesystem
+#	[device]    : device location, e.g. /dev/sdb5
+#	[directory] : virtual directory mount point, e.g. /media/disk
+#
+#	see how much disk space is available on an individual device,
+#	-h param set human readable size (G):
+#	df -h
+#
+#	show the disk usage for a specific directory:
+#	du -h
+#
+#	note: df shows run-time values, files which are deleted but not yet released would not appear;
+#	      get a lot of output, can pipe with sort 
+#	      
+#
+#
+######################################### sorting with sort
+#
+#	the sort command sorts the data lines in a text file using standard sorting rules for the #	#	language you specify as the default for the session,
+#	-n param for numerical sorting
+#	-M param for months
+#	-r param for reverse sort order (descending)
+#
+#	basic example:
+#	sort -n filename
+#
+#	piping du output with sort:
+#	du -h * | sort -nr
+#
+#	piping du output with sort and saving the output into a file in the pwd:
+#	du -h * | sort -nr > output_file
+#
+#	as Linux log files usually start a line with a timestamp which beginnings with the month,
+#	you can neatly sort log files according to month with -M:
+#	sort -M log_file
+#
+#	another usefull example is sorting data according to fields with 
+#	-t (specifies the field separator; double-dash: --field-separator = SEP)
+#	and -k (specifies which field to sort; double-dash: -key = POS1 [, POS2 ])
+#	in, for example, /etc/passwd file 
+#	(/etc/passwd matches the login name to a corresponding UID, see Chap7):
+#	sort -t ':' -k 3 -n /etc/passwd
+#
+#	
+########################################## search with grep
+#
+#	syntax: grep [options] pattern [file]
+#	
+#	common uses:
+#	-n : shows nr line
+#	-e : either, allows to use more params
+#	-v : not contained (inverse)
+#
+#	basic use: grep either 5 either 7 in file_name:
+#	grep -n -e 5 -e 7 file_name
+#
+#	to get the nr of unique http requests per hour from the Apache access.log on 1/Jan,
+#	cut by field 1 with deliminter ]:
+#	grep "1/Jan" access.log | cut -d] -f1 | awk -F '{print $2":00"}' | sort -n | uniq -c
+#
+#	
+#	
+#
+#
+#
+###########################################################################################################

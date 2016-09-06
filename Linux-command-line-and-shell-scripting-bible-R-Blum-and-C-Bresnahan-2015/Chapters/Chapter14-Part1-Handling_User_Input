@@ -1,0 +1,138 @@
+#!/bin/bash
+
+
+###########################################################################################################
+# CHAPTER 14: 
+# Handling User Input
+# Part 1
+#
+#
+# INDEX: 
+# Part 1: positional params
+# Part 2: options as params
+# Part 2: options break from params
+# Part 3: format params with getopt to combine params -ab -c test1
+# Part 4: read
+# Part 4: read, a file by line
+#
+#
+######################################## positional params
+#
+#	bash assigns special vars, called positional params, to command line params entered;
+#	beginning with $0 (script's name), and then $1, $2, $3, ..., $9, and then ${10}, ${11}, ...
+#	these params can be numerical or strings;
+#	the $# param hold the nr of params run from script
+#
+#	for example:
+	if [ -n $1 ]
+	then 
+		echo "\$1 param is: $1"
+	else
+		echo "\$1 is null"
+	fi
+
+	echo "\$0 param is: $0 , set to the path as run"
+
+	name=$(basename $0)	
+	
+	echo "this can be overcome by using 'name=\$(basename \$0)'"
+	echo "'name=\$(basename \$0)' is: $name"
+	echo "nr of params run is stored in \$# as: $#"
+
+#
+#	in addition:
+#	The $* variable takes all the parameters supplied on the command line as a single word.
+#	The $@ variable, on the other hand, takes all the parameters supplied on the command line as #		separate words in the same string.
+#
+#
+	echo "param \$* is: $*"
+	echo "param \$@ is: $@"
+#
+#	accordingly, $@ can be easily iterated with a for-statement:
+
+	count=1
+	
+	for param in "$@"
+	do
+		echo "\$@ param \$count: $param"
+		count=$[ $count + 1 ]
+	done
+#
+#	iteration through input param can also be done with shift,
+#	warning: shift shifts to the left, e.g. from $2 to $1,
+#	and deletes the previous param
+#
+	count=1
+	
+	while [ -n "$1" ]
+	do
+		echo "param \$count shift: $1"
+		count=$[ $count + 1 ]
+		shift
+	done
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#	
+###########################################################################################################
