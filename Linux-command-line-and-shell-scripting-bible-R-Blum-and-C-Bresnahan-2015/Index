@@ -1,0 +1,129 @@
+#!/bin/bash
+
+###########################################################################################################
+#
+#
+# CHAPTER 3:
+# Basic bash Shell Commands
+#
+# basic file management, file globbing 
+# creating files with touch
+# copy files / dirs with cp 
+# copy files / dirs with cp 
+# linking files with ln
+# renaming files (aka moving files) with mv 
+# removing files with rm 
+# make a dir with mkdir
+# removing dirs with rmdir and rm 
+# viewing files with file, cat, more, less, tail, head
+#
+#
+# CHAPTER 4: 
+# More bash Shell Commands
+#
+# info about processes with ps
+# Real-time process monitoring with top 
+# Stopping processes with kill and killall
+# mount / umount (no "n"), available dev space with df, dir space with du 
+# sorting with sort
+# search with grep
+#
+#
+# CHAPTER 5: 
+# Understanding the Shell
+#
+# intro
+# background mode
+# co-processing
+# external / internal commands
+# history and alias
+#
+#
+# CHAPTER 6: 
+# Using Linux Environment Variables
+#
+# global and local env vars: intro
+# setting local user-defined vars
+# setting global user-defined vars
+# Locating System Environment Variables
+# Making environment variables persistent
+# var arrays
+#
+#
+# CHAPTER 7: 
+# Understanding Linux File Permissions
+#
+#
+# file permissions (...)
+# changing file permissions with chmod
+# creating a shared group directory with SGID
+#
+#
+# CHAPTER 8: 
+# Managing Filesystems
+#
+# ...
+#
+#
+# CHAPTER 9: 
+# Installing Software
+#
+# aptitude 
+# extra: save prompt output into a file and view it with less
+#
+#
+# CHAPTER 10: 
+# Working with Editors
+#
+# vim
+# vim basics
+# nano (more simple than vim)
+#
+#
+# CHAPTER 11: 
+# Basic Script Building
+#
+# (running a shell script, remember to set file permission to execute and set $PATH)
+# command substitution in a subshell
+# output and input redirection
+# math expressions
+# bc (bash calculator) basics
+# $?
+#
+#
+# CHAPTER 12: 
+# Using Structured Commands
+#
+# for
+# while
+# until
+# looping through files, using IFS (internal field separator)
+# looping: break
+# looping: continue
+# looping: practical example: executable files in $PATH folders
+#
+#
+# CHAPTER 13: 
+# More Structured Commands
+#
+# if-then(-else/elif) ; 
+# if [ test ] && / || [ test2 ] ;
+# if (( complex math expr )) ;
+# if [[ complex string expr ]] ;
+# case
+#
+#
+# CHAPTER 14: 
+# Handling User Input
+#
+#
+# Part 1: positional params
+# Part 2: options as params
+# Part 2: options break from params
+# Part 3: format params with getopt to combine params -ab -c test1
+# Part 4: read
+# Part 4: read, a file by line
+#
+#
+###########################################################################################################
+
